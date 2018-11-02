@@ -1,5 +1,8 @@
 <?php
-	session_start();
+include("config.php");
+include("scripts/MenuItem.php");
+   //$db = mysqli_connect($db_host,$db_user,$db_pass,$db_name);
+  session_start();
 ?>
 
 
@@ -13,11 +16,41 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"
     
-    <title>Hello, world!</title>
+    
   </head>
   <body>
+    <div class="container">
     <h1>Hello, world!</h1>
 
+      <div class="container">
+        <?php
+        $polishSandwich = MenuItem::create()->setPrimaryKey("1")->setName("Polish Sandwich")->setImagePath("img/polish_sandwich.jpg");
+        $menu = new SplDoublyLinkedList();
+
+        $menu->push($polishSandwich);
+
+
+
+        foreach ($menu as $item){
+          ?>
+          <a class="card" style="width: 18rem;" <?php echo "href=ingredients.php?id=$item->primaryKey.php"?>>
+            <?php
+            echo "<img class='card-img-top' src=$item->imagePath alt='Card image cap'>"
+            ?>
+            <div class="card-body">
+            <?php
+              echo "<h5 class='card-title'>$item->name</h5>"
+              ?>
+            </div>
+          </a>
+        
+          <?php
+        }
+      ?>
+      </div>
+  
+
+  </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

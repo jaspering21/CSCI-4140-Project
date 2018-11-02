@@ -1,5 +1,7 @@
 <?php
 	session_start();
+
+  $menu_item = "Polska Sandwich";
 ?>
 
 <!doctype html>
@@ -13,11 +15,17 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"
   </head>
 
+  <?php
+echo  <<<EOL
+
   <body>
     <div class="container">
+        <h1>$menu_item </h1>
+
         <ul class="list-group">
 
-  <?php
+EOL;
+
   include("scripts/Ingredient.php");
 
   $cheddar = Ingredient::create()->setName("Cheddar Cheese")->setQuantity("200")->setUnit("g");
