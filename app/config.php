@@ -1,5 +1,4 @@
 <?php
-
 #
 # INCLUDED CODE
 #
@@ -12,10 +11,5 @@ $db_user = 'root';			 //root
 $db_pass = 'rootpassword';		
 $db_name = 'database';   	
 $db_port = 3306; // Tthe standard port is 3306 for MySQL. MAMP typically uses 8889. //3306
-
-# Enter the values for your host, database, user, and port
-
-# Import the included .sql file to get the table structure for this demo
-
 
 ?>
