@@ -13,41 +13,75 @@ include("scripts/MenuItem.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="css/style.css"
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"
     
     
   </head>
   <body>
-    <div class="container">
-    <h1>Hello, world!</h1>
+    <div id="header_rectangle"> 
+      <a id="login" class="btn btn-primary" href="login.php">Admin</a>
+    </div>
 
-      <div class="container">
-        <?php
-        $polishSandwich = MenuItem::create()->setPrimaryKey("1")->setName("Polish Sandwich")->setImagePath("img/polish_sandwich.jpg");
-        $menu = new SplDoublyLinkedList();
+    <div id= "main_content" class="container">
+      
+      <h1>Restaurant Menu</h1>
 
-        $menu->push($polishSandwich);
-
-
-
-        foreach ($menu as $item){
-          ?>
-          <a class="card" style="width: 18rem;" <?php echo "href=ingredients.php?id=$item->primaryKey.php"?>>
-            <?php
-            echo "<img class='card-img-top' src=$item->imagePath alt='Card image cap'>"
-            ?>
-            <div class="card-body">
-            <?php
-              echo "<h5 class='card-title'>$item->name</h5>"
-              ?>
-            </div>
-          </a>
+      <div id="menu_items" class="container">
         
-          <?php
+        <?php
+                
+          $menu = new SplDoublyLinkedList();
+
+          $menu->push(MenuItem::create()->setPrimaryKey("1")->setName("Polish Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+          $menu->push(MenuItem::create()->setPrimaryKey("2")->setName("Italian Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+
+
+          foreach ($menu as $item){
+           
+        ?>
+          <a class="card" style="" <?php echo "href=ingredients.php?id=$item->primaryKey.php"?>>
+            <?php
+              echo "<img class='card-img-top' src=$item->imagePath alt='Card image cap'>"
+            ?>
+              <div class="card-body">
+              <?php
+                echo "<h5 class='card-title'>$item->name</h5>"
+              ?>
+              </div>
+          </a>
+        <?php  
         }
-      ?>
-      </div>
+        
+        ?>
+    </div>
+
+    <div id="footer_spacer"></div>
+
+      
+
+      <div class="container" id= "footer">
+        <div id="cart"> 
+          <div id="total">
+            Total: 42.58$ 
+          </div>
+        </div>
+        <div class="container" id ="order-actions">
+          <button type="button" class="btn btn-secondary">Cancel</button>
+          <button type="button" class="btn btn-primary">Order</button>
+        </div
+        
+      </div
+
+
   
 
   </div>
