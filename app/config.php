@@ -17,15 +17,14 @@ $db_port = 3306; // Tthe standard port is 3306 for MySQL. MAMP typically uses 88
 /* To deploy the code on the server, modify the following values accordingly*/
 $db_host = 'den1.mysql4.gear.host'; //localhost
 $db_user = 'halifaxdine';			 //root
-$db_pass = 'Ps7J6P_Mc-EK';		
+$db_pass = 'Ps7J6P_Mc-EK';	
+$db_name = 'halifaxdine';	
 
 
-$db = mysqli_connect($db_host, $db_user, $db_pass);
-
+$db = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 	if (!$db) {
 		echo mysqli_connect_error();  // Get a descriptive message for the connection failure
 		exit(); // Terminate script if database can't connect.
 	} 
-
 
 ?>

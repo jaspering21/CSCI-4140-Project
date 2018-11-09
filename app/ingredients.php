@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	include("session.php");
 
   $menu_item = "Polska Sandwich";
 ?>
