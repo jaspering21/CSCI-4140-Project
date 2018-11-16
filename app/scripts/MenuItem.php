@@ -46,5 +46,22 @@ class MenuItem
         $this->primaryKey = $primaryKey;
         return $this;
     }
+
+    /*
+    * Encoded name for passing by post
+    */
+    public function encodePostVariable($postVariable) {
+        return "MenuItem".",".$postVariable;
+    }
+
+    /*
+    * Decodes 
+    */
+    public function decodePostVariable($postVariable) {
+        if(strpos($postVariable, 'MenuItem') !== false){
+            return explode (",", $postVariable);
+        }
+        return false;
+    }
 }
 

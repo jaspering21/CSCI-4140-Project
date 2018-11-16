@@ -1,3 +1,4 @@
+/*HEADER*/
 #header_rectangle {
 	height: 50px;
  	width: 100%;
@@ -7,6 +8,7 @@
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: center;
+	margin-bottom: 15px;
 }
 
 #login {
@@ -14,6 +16,7 @@
 
 }
 
+/*INDEX MENU PAGE*/
 #main_content {
 
 }
@@ -51,7 +54,7 @@
 	align-items: stretch;
 }
 
-#order-actions button {
+#order-actions .btn {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 33.3%;
@@ -61,3 +64,27 @@
 	float:right;
 	font-size: 1.5em;
 }
+
+/* CHECKOUT.PHP */
+#checkout-content {
+	background-image: url("../img/cooking_plates.jpg");
+	background-position: center; /* Center the image */
+  	background-size: cover; /* Resize the background image to cover the entire container */
+  	margin-top: -15px;
+  	padding-bottom: 400px;
+}
+
+#checkout-content #main-content {
+	padding-top: 15px;
+	color: #EEE;
+}
+
+#order-button {
+	padding: 15px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+
+}
+
+
+
