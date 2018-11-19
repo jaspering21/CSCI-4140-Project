@@ -6,6 +6,7 @@ class MenuItem
 	public $name;
     public $imagePath;
     public $primaryKey;
+    public $price;
 
 
 	 /*
@@ -47,6 +48,11 @@ class MenuItem
         return $this;
     }
 
+    public function setPrice($price) {
+        $this->price = $price;
+        return $this;
+    }
+
     /*
     * Encoded name for passing by post
     */
@@ -59,7 +65,9 @@ class MenuItem
     */
     public function decodePostVariable($postVariable) {
         if(strpos($postVariable, 'MenuItem') !== false){
-            return explode (",", $postVariable);
+            $itemArray = explode (",", $postVariable);
+            var_dump($itemArray);
+            return $itemArray[1];
         }
         return false;
     }

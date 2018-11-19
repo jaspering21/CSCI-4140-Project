@@ -34,6 +34,18 @@
 
 }
 
+#menu_items .card-title {
+	display:inline;
+}
+
+#menu_items .menu-item-price {
+	float:right;
+}
+
+#menu_items .number-spinner {
+	padding-top: 10px;
+}
+
 #footer_spacer {
 	padding-bottom: 100px;
 }
@@ -60,7 +72,7 @@
 	width: 33.3%;
 }
 
-#cart #total {
+#cart #price-total {
 	float:right;
 	font-size: 1.5em;
 }

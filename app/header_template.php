@@ -1,12 +1,6 @@
 <?php
-/*include("config.php");*/
-
-   //$db = mysqli_connect($db_host,$db_user,$db_pass,$db_name);
-  session_start();
-
-  if(!isset($_SESSION["tableID"]) ){
-    $_SESSION["tableID"] = rand(1, 20);
-  }
+include_once ("create_session.php");
+ 
 ?>
 
 
@@ -25,6 +19,10 @@
   </head>
   
   <body>
-    <div id="header_rectangle"> 
-      <a id="login" class="btn btn-primary" href="login.php">Admin</a>
+    <div id="header_rectangle">
+      <a id="menu" class="btn btn-primary" href="index.php">Menu</a>
+      <a id="server-queue" class="btn btn-primary" href="server_queue.php">Server Queue</a>
+      <a id="admin-menu" class="btn btn-primary" href="admin_menu.php">Admin Menu</a>
+      <a id="login" class="btn btn-primary" href="analytics.php">Analytics</a>
+      <a id="login" class="btn btn-secondary" href="login.php">Admin</a>
     </div>

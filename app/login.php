@@ -1,35 +1,93 @@
 
 <?php
    include("config.php");
+   include("header_template.php");
    session_start();
 
    $error = "";
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+      /* create a prepared statement */
+if(isset($_POST['username'])) {
+   
+ 
+   $username = $_POST['username'];
+   $password = $_POST['password'];
+   
+   
+   $query = "SELECT USER_ID, PASSWORD FROM user WHERE id = ?";
+   
+   $stmt= mysqli_prepare($db, $query);
+   if ( !$stmt ) {
+      die('mysqli error: '.mysqli_error($db));
+   }
+   
+   mysqli_stmt_bind_param($stmt, "i", $username);
+   
+   if ( !mysqli_execute($stmt) ) {
+  die( 'stmt error: '.mysqli_stmt_error($stmt) );
+}
+   
+   mysqli_stmt_execute($stmt);
+   mysqli_stmt_bind_result($stmt, $db_user_id, $db_pwd);
+   mysqli_stmt_fetch($stmt);
+   
+   if ($db_pwd == $password) {
+      $_SESSION['user_id'] = $db_user_id;
+      mysqli_stmt_close($stmt);
+      mysqli_close($db);
+      header("Location: server_queue.php");
+   }
+   else{
+      $error = "Your Login Name or Password is invalid";
+   }
+}}
+
+
       // username and password sent from form 
       
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
+      /*$myusername = mysqli_real_escape_string($db,$_POST['username']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+
+      $myusername = $_POST['username'];
+      $mypassword = $_POST['password'];
       
-      $sql = "SELECT user_id FROM user WHERE id = '$myusername' and password = '$mypassword'";
-      $result = mysqli_query($db,$sql);
+      $query = "SELECT `user_id` FROM `user` WHERE `id` = '$myusername' and `password` = '$mypassword'";
+
+      $query =  "SELECT `user_id` FROM `user` WHERE `id` = ? and `password` = ?";
+
+      $stmt = $db->query($query);
+      $stmt->execute([$myusername, $password]);
+      $count = $stmt->fetch(PDO::FETCH_ASSOC);*/
+/*
       
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
+      $stmt = mysqli_prepare($db, $query);
+      if ( !$stmt ) {
+         die('mysqli error: '.mysqli_error($link));
+      }
+      mysqli_stmt_bind_param($stmt, "ss", $myusername, $password);
+
+      if ( !mysqli_execute($stmt) ) {
+  die( 'stmt error: '.mysqli_stmt_error($stmt) );
+
+      mysqli_stmt_execute($stmt);
+
+      $result = mysqli_stmt_get_result($stmt);
       
       $count = mysqli_num_rows($result);
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
       if($count == 1) {
-         session_register("myusername");
          $_SESSION['login_user'] = $myusername;
          
-         header("location: welcome.php");
+         header("location: admin_menu.php");
       }else {
          $error = "Your Login Name or Password is invalid";
-      }
-   }
+      }*/
+   
 ?>
 <html>
    

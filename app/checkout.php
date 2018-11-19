@@ -7,7 +7,8 @@ include("header_template.php");
  		<a id="order-button" class="btn btn-success" href="index.php">Place another Order</a>
 
  		<?php 
- 		if(array_key_exists("feedbackTextArea", $_REQUEST)){
+ 		if (isset($_SESSION['feedbackTextArea'])){
+ 			unset($_SESSION['feedbackTextArea']);
  		echo '
  		<div class="alert alert-success alert-dismissible fade show" role="alert">
 		  <strong>Thank You.</strong> Your feedback has been submitted.
@@ -16,9 +17,9 @@ include("header_template.php");
 		  </button>
 		</div>
 		';
-	}
+		}
 		?>
-		<form action="checkout.php" method="post">
+		<form action="scripts/SubmitFeedback.php" method="post">
 		<div class="form-group">
 		  <div class="form-group">
 		    <label for="feedbackTextArea">Give Feedback</label>
@@ -28,7 +29,7 @@ include("header_template.php");
 		</div>
 		</form>
 		</div>
-	</div>
+	</div> 
   </body>
   <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

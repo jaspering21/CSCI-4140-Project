@@ -1,6 +1,7 @@
 <?php
-include("header_template.php")
-include("scripts/MenuItem.php");
+include_once("header_template.php");
+include_once("scripts/MenuItem.php");
+include_once("scripts/getMenuItems.php");
 ?>
     <div id= "main_content" class="container">
       
@@ -10,21 +11,13 @@ include("scripts/MenuItem.php");
         
         <?php
                 
-          $menu = new SplDoublyLinkedList();
-
-          $menu->push(MenuItem::create()->setPrimaryKey("1")->setName("Polish Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-          $menu->push(MenuItem::create()->setPrimaryKey("2")->setName("Italian Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-          $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
+          $menu = getMenuItems();
 
 
           foreach ($menu as $item){
            
         ?>
-          <a class="card" style="" <?php echo "href=ingredients.php?id=$item->primaryKey.php"?>>
+          <a class="card" style="" <?php echo "href=ingredients.php?itemID=$item->primaryKey&itemName=$item->name"?>>
             <?php
               echo "<img class='card-img-top' src=$item->imagePath alt='Card image cap'>"
             ?>

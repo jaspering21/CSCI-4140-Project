@@ -1,6 +1,8 @@
 <?php
-include("header_template.php");
-include("scripts/MenuItem.php");
+include_once("header_template.php");
+include_once("scripts/MenuItem.php");
+include_once("scripts/getMenuItems.php");
+
 
 echo "
     <div id= \"main_content\" class=\"container\">  
@@ -10,29 +12,20 @@ echo "
 
         <div id=\"menu_items\" class=\"container\">
           ";
-        
-                  
-            $menu = new SplDoublyLinkedList();
-
-            $menu->push(MenuItem::create()->setPrimaryKey("1")->setName("Polish Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-            $menu->push(MenuItem::create()->setPrimaryKey("2")->setName("Italian Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-            $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-            $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-            $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-            $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg"));
-            $menu->push(MenuItem::create()->setPrimaryKey("3")->setName("Frog Sandwich")->setImagePath("img/polish_sandwich.jpg")); 
-
+      
+            $menu = getMenuItems();
 
             foreach ($menu as $item){
              
           ?>
-            <a class="card" style="">
+            <a class="card menu-item-card" style="">
               <?php
                 echo "<img class='card-img-top' src=$item->imagePath alt='Card image cap'>";
               ?>
                 <div class="card-body">
                 <?php
-                  echo "<h5 class='card-title'>$item->name</h5>";
+                  echo "<h5 class='card-title'>$item->name</h5><h5 class='card-title menu-item-price'>
+                  \$$item->price</h5>";
                 ?>
 
                 <div class="input-group number-spinner">
@@ -56,8 +49,8 @@ echo "
       <div id="footer_spacer"></div>
         <div class="container" id= "footer">
           <div id="cart"> 
-            <div id="total">
-              Total: 42.58$ 
+            <div id="price-total">
+              <span>Total: $</span><span id= "price-value">0</span> 
             </div>
           </div>
           <div class="container" id ="order-actions">
@@ -76,23 +69,29 @@ echo "
 
 
     <script>
+      var totalPrice = 0.00;
+      /*Updates counts of menu items for spinners as well as price total*/
         $(document).on('click', '.number-spinner button', function () {    
       var btn = $(this),
         oldValue = btn.closest('.number-spinner').find('input').val().trim(),
         newVal = 0;
-      
+        var card = btn.closest('.menu-item-card');
+        var price = Number(card.find('.menu-item-price').text().trim().replace('$', ''));
+        
       if (btn.attr('data-dir') == 'up') {
         newVal = parseInt(oldValue) + 1;
+        totalPrice +=price;
       } else {
         if (oldValue > 0) {
           newVal = parseInt(oldValue) - 1;
+          totalPrice -=price;
         } else {
           newVal = 0;
         }
       }
+      $('#price-value').html(totalPrice);
       btn.closest('.number-spinner').find('input').val(newVal);
     });
-
 </script>
   </body>
 </html>

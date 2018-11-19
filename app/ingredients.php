@@ -1,7 +1,10 @@
 <?php
-	include("session.php");
+	/*include("session.php");*/
+  include("header_template.php");
+  include("scripts/Ingredient.php");
+  include("scripts/getMenuItemIngredients.php");
 
-  $menu_item = "Polska Sandwich";
+  $menuItemName = htmlspecialchars($_GET['itemName']);
 ?>
 
 <!doctype html>
@@ -20,21 +23,19 @@ echo  <<<EOL
 
   <body>
     <div class="container">
-        <h1>$menu_item </h1>
+        <h1>$menuItemName </h1>
 
         <ul class="list-group">
 
 EOL;
 
-  include("scripts/Ingredient.php");
+  $menuItemGet = htmlspecialchars($_GET["itemID"]);
 
-  $cheddar = Ingredient::create()->setName("Cheddar Cheese")->setQuantity("200")->setUnit("g");
-  $pickles = Ingredient::create()->setName("Bread and Butter Pickles")->setQuantity("2");
-  $fish = Ingredient::create()->setName("Red Snapper")->setQuantity("100")->setUnit("g");
-  $ingredients = new SplDoublyLinkedList();
-  $ingredients->push($cheddar);
-  $ingredients->push($pickles);
-  $ingredients->push($fish);
+  if(isset($menuItemGet)){
+    $ingredients = getMenuItemIngredients($menuItemGet);
+  }
+
+
   
   foreach ($ingredients as $ingredient){
     echo "<li class='list-group-item'>$ingredient->quantity$ingredient->unit $ingredient->name</li>";
