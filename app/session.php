@@ -13,4 +13,7 @@
    if(!isset($_SESSION['login_user'])){
       header("location:login.php");
    }
+
+   /*Need to check if current user's id gives the permission to get to the current page"
+   
 ?>
