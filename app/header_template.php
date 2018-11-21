@@ -22,7 +22,8 @@ include_once ("create_session.php");
     <div id="header_rectangle">
       <a id="menu" class="btn btn-primary" href="index.php">Menu</a>
       <a id="server-queue" class="btn btn-primary" href="server_queue.php">Server Queue</a>
-      <a id="admin-menu" class="btn btn-primary" href="admin_menu.php">Admin Menu</a>
-      <a id="login" class="btn btn-primary" href="analytics.php">Analytics</a>
+      <a id="settings" class="btn btn-primary" href="settings.php">Settings</a>
+      <a id="admin-menu" class="btn btn-primary" href="admin_menu.php">Recipes</a>
+      <a id="analytics" class="btn btn-primary" href="analytics.php">Analytics</a>
       <a id="login" class="btn btn-secondary" href="login.php">Admin</a>
     </div>

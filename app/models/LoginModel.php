@@ -8,7 +8,7 @@ Returns
 
 */ 
 public static function getLoginSQL() {
-        return "SELECT user_id FROM user WHERE id = '$myusername' and password = '$mypassword'";
+        return "SELECT user_id FROM user WHERE id = '$myusername' and passwords = '$mypassword'";
     }
 
 }

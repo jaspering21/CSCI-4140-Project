@@ -12,15 +12,15 @@ $orderID = after('orderID', $_POST['orderID']);
 $statusMessage = $_POST['statusMessage'];
 
 
-$query = "SELECT o_status
+$query = "SELECT order_status
 FROM tableorder
-WHERE to_id = $orderID
+WHERE tid = $orderID
 ";
 $result = mysqli_query($GLOBALS['db'], $query);
 
 $row = mysqli_fetch_assoc($result);
 
-$statusMessage = $row['o_status'];
+$statusMessage = $row['order_status'];
 
 $order = new Order();
 $order->setStatus($statusMessage);
@@ -29,13 +29,13 @@ $order->toggleStatus();
 $status = $order->status;
 $buttonActionMessage = $order->getTableActionMessage($status);
 
-$query = "UPDATE tableorder
-SET o_status = '$status'
-WHERE to_id = '$orderID'
+$query = "
+UPDATE tableorder
+SET order_status = '$status'
+WHERE tid = '$orderID';
 ";
 
 mysqli_query($GLOBALS['db'], $query);
-
 /*
 $buttonActionMessage = $order->getTableActionMessage($order->status);
 echo "<button type=\"button\" onclick=\"updateOrderStatus(this)\" class=";

@@ -17,7 +17,7 @@ if(isset($_POST['username'])) {
    $password = $_POST['password'];
    
    
-   $query = "SELECT USER_ID, PASSWORD FROM user WHERE id = ?";
+   $query = "SELECT USER_ID, PASSWORDS FROM user WHERE id = ?";
    
    $stmt= mysqli_prepare($db, $query);
    if ( !$stmt ) {

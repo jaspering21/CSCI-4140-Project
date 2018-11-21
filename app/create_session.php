@@ -1,11 +1,18 @@
  <?php
  session_start();
-  include("config.php");
+  include_once("config.php");
+  include_once("scripts/ChangeBranch.php");
+
 
   if(!isset($_SESSION["tableID"]) ){
     $_SESSION["tableID"] = rand(1, 5);
   }
 
-  if(!isset($_SESSION["branchID"]) ){
-    $_SESSION["branchID"] = rand(1, 4);
+
+ if(!isset($GLOBALS['db']) ){
+ 	if(isset($_SESSION["branchID"]))
+ 		changeBranch($_SESSION["branchID"]);
+ 	else{
+      changeBranch(rand(1, 4));
+ 	}
   }

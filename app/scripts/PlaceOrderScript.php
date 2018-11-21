@@ -16,21 +16,17 @@ foreach ($_POST as $key => $value ){
 		$counter = 0;
 		while ($counter < $value ){
 			$counter++;
-			$query = "INSERT into tableorder(branch_id, m_id, table_id) VALUES( {$_SESSION['branchID']},$order_id, {$_SESSION['tableID']})";
+			$query = "BEGIN;";
+			mysqli_query($GLOBALS['db'], $query);
+			$query = "INSERT into tablerecord(t_date, t_number) VALUES (CURDATE(), {$_SESSION['tableID']});";
+			
+			mysqli_query($GLOBALS['db'], $query);
+			$query = "INSERT into tableorder(m_id, table_id) VALUES ($order_id, {$_SESSION['tableID']});";
+			mysqli_query($GLOBALS['db'], $query);
+			$query ="COMMIT;";
 			$result = mysqli_query($GLOBALS['db'], $query);
-			/* Testing Code
-			if($result)
-				{
-				echo "Success";
-
-				}
-				else
-				{
-				echo "Error";
-				echo mysqli_error($GLOBALS['db']);
-
-				}
-			}*/
+			
+			
 			}
 	}
 }

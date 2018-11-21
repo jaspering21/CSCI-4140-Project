@@ -1,6 +1,6 @@
 <?php
 include_once("MenuItem.php");
-include_once("config.php");
+include_once("create_session.php");
 function getMenuItems(){
 	$menu = new SplDoublyLinkedList();
 	$query = "SELECT m_id, m_name, m_price FROM menu";

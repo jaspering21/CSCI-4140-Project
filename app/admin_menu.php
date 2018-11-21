@@ -5,7 +5,7 @@ include_once("scripts/getMenuItems.php");
 ?>
     <div id= "main_content" class="container">
       
-      <h1>Restaurant Menu</h1>
+      <h1>Recipes</h1>
 
       <div id="menu_items" class="container">
         

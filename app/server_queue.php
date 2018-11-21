@@ -54,6 +54,7 @@ echo '
       statusMessage: button.innerHTML
     },
     function(data, status){
+      
       updateTable();
     });
   }
