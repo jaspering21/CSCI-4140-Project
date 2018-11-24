@@ -27,6 +27,7 @@ if (mysqli_num_rows($result) > 0) {
 if(!$result){
     error_log(mysqli_error($GLOBALS['db']));
 }
+error_log(mysqli_error($GLOBALS['db']));
 /*Ensure Queue stays manageable in size*/
 while($orderQueue->count() > 25){
 	$orderQueue->pop();

@@ -20,10 +20,26 @@ include_once ("create_session.php");
   
   <body>
     <div id="header_rectangle">
-      <a id="menu" class="btn btn-primary" href="index.php">Menu</a>
-      <a id="server-queue" class="btn btn-primary" href="server_queue.php">Server Queue</a>
-      <a id="settings" class="btn btn-primary" href="settings.php">Settings</a>
-      <a id="admin-menu" class="btn btn-primary" href="admin_menu.php">Recipes</a>
-      <a id="analytics" class="btn btn-primary" href="analytics.php">Analytics</a>
-      <a id="login" class="btn btn-secondary" href="login.php">Admin</a>
+      <?php
+      echo '<a id="menu" class="btn btn-primary" href="index.php">Menu</a>';
+      
+      if (!isset($_SESSION['userLevel'])){
+        echo '<a id="login" class="btn btn-secondary" href="login.php">Admin</a>';
+      }
+      else {
+        if ($_SESSION['userLevel'] > 0){
+          echo '<a id="server-queue" class="btn btn-primary" href="server_queue.php">Server Queue</a>';
+        }
+        if ($_SESSION['userLevel'] > 4){
+          echo '<a id="settings" class="btn btn-primary" href="settings.php">Settings</a>';
+        }
+        if ($_SESSION['userLevel'] > 3){
+          echo '<a id="admin-menu" class="btn btn-primary" href="admin_menu.php">Recipes</a>';
+        }
+        if ($_SESSION['userLevel'] > 4){
+          echo '<a id="analytics" class="btn btn-primary" href="analytics.php">Analytics</a>';
+        }
+        echo '<a id="login" class="btn btn-secondary" href="logout.php">Logout</a>';
+      }
+      ?>
     </div>

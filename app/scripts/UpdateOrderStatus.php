@@ -7,10 +7,8 @@ function after ($text, $inthat){
     return substr($inthat, strpos($inthat,$text)+strlen($text));
 };
 
-
 $orderID = after('orderID', $_POST['orderID']);
 $statusMessage = $_POST['statusMessage'];
-
 
 $query = "SELECT order_status
 FROM tableorder
@@ -31,11 +29,12 @@ $buttonActionMessage = $order->getTableActionMessage($status);
 
 $query = "
 UPDATE tableorder
-SET order_status = '$status'
+SET order_status = '$status', e_id = {$_SESSION['userID']}
 WHERE tid = '$orderID';
 ";
 
 mysqli_query($GLOBALS['db'], $query);
+error_log(mysqli_error($GLOBALS['db']));
 /*
 $buttonActionMessage = $order->getTableActionMessage($order->status);
 echo "<button type=\"button\" onclick=\"updateOrderStatus(this)\" class=";
