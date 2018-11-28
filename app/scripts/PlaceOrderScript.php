@@ -40,7 +40,6 @@ foreach ($_POST as $key => $value ){
 				    	$_SESSION['tableRecordID'] = $row['tableRecordID'];
 				    }
 				}
-				error_log($_SESSION['tableRecordID']);
 			}
 
 			$query = "INSERT into tableorder(m_id, table_id) VALUES ($order_id, {$_SESSION['tableRecordID']})";
@@ -49,9 +48,8 @@ foreach ($_POST as $key => $value ){
 			$query ="COMMIT;";
 			$result = mysqli_query($GLOBALS['db'], $query);
 			
-			
 			}
-		    }
+	    }
 	}
 /*Redirect user to checkout page*/
 header("location: ../checkout.php");

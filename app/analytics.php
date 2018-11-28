@@ -15,7 +15,7 @@ include_once("scripts/GenerateManagerData.php");
 		?>
 	</div>
 
-	<!--<iframe src="https://tryca.ca.analytics.ibm.com/bi/?perspective=explore&amp;pathRef=.my_folders%2FNight+by+Equipment+Visualization" width="1080" height="720" frameborder="0" gesture="media" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+	<iframe src="https://tryca.ca.analytics.ibm.com/bi/?perspective=explore&amp;pathRef=.my_folders%2FECM%2FOrder+status" width="1080" height="720" frameborder="0" gesture="media" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 
