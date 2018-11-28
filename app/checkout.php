@@ -1,10 +1,21 @@
 <?php 
 include("header_template.php");
+
+$cartTotal = $_SESSION['cartTotal'];
+$taxes = $_SESSION['taxPercentage']*$cartTotal;
+$finalPrice = $cartTotal + $taxes;
+
+echo "
+<div id= 'checkout-content'>
+	<div id= 'main-content' class='container'>
+ 		<h1>Receipt</h1>
+ 		<h3> Cost: \$$cartTotal</h2>
+ 		<h3> Tax: \$$taxes</h2>
+ 		<h2> Total: \$$finalPrice</h2>
+ 		";
 ?>
-<div id= "checkout-content">
-	<div id= "main-content" class="container">
- 		<h1>Your order has been placed.</h1>
- 		<a id="order-button" class="btn btn-success" href="index.php">Place another Order</a>
+ 		<a id="order-button" class="btn btn-secondary" href="index.php">Order More</a>
+ 		<a id="order-button" class="btn btn-success" href="scripts/payment.php">Pay</a>
 
  		<?php 
  		if (isset($_SESSION['feedbackTextArea'])){

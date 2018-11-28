@@ -39,6 +39,7 @@ echo '
   function updateTable() {    
    xmlhttp = new XMLHttpRequest();
    xmlhttp.onreadystatechange = function() {
+    console.log(this.status);
     if (this.readyState == 4 && this.status == 200) {
         document.getElementById("order-table-body").innerHTML = this.responseText;
     }

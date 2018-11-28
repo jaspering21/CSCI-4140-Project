@@ -12,9 +12,6 @@ function getMenuItemIngredients($itemID){
 
 	$result = mysqli_query($GLOBALS['db'],$query);
 
-	error_log(mysqli_error($GLOBALS['db']));
-	error_log($query);
-
 	if (mysqli_num_rows($result) > 0) {
     // output data of each row
 	    while($row = mysqli_fetch_assoc($result)) {

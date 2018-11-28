@@ -9,7 +9,6 @@ echo "
       <h1>Restaurant Menu - Table "; echo $_SESSION["tableID"]; echo "</h1>
       
       <form action=\"scripts/PlaceOrderScript.php\" method=\"post\">
-
         <div id=\"menu_items\" class=\"container\">
           ";
       
@@ -24,7 +23,8 @@ echo "
               ?>
                 <div class="card-body">
                 <?php
-                  echo "<h5 class='card-title'>$item->name</h5><h5 class='card-title menu-item-price'>
+                  echo "
+                  <h5 class='card-title'>$item->name</h5><h5 class='card-title menu-item-price'>
                   \$$item->price</h5>";
                 ?>
 
@@ -50,6 +50,7 @@ echo "
         <div class="container" id= "footer">
           <div id="cart"> 
             <div id="price-total">
+              <input type='hidden' id='post-price-value' name='totalPrice' value='0'>
               <span>Total: $</span><span id= "price-value">0</span> 
             </div>
           </div>
@@ -90,6 +91,7 @@ echo "
         }
       }
       $('#price-value').html(totalPrice);
+      $('#post-price-value').val(totalPrice);
       btn.closest('.number-spinner').find('input').val(newVal);
     });
 </script>

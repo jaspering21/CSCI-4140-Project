@@ -13,6 +13,6 @@
  	if(isset($_SESSION["branchID"]))
  		changeBranch($_SESSION["branchID"]);
  	else{
-      changeBranch(rand(1, 4));
+      changeBranch(1);
  	}
   }

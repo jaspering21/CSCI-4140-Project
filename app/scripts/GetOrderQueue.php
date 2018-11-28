@@ -10,23 +10,26 @@ $orderQueue->push(Order::create()->setTableID("1")->setOrder("Cheese Sandwich")-
 */
 $orderQueue = new SplQueue();
 
-$query = "SELECT t.tid, m.m_name, t.table_id, t.order_status
-FROM tableorder as t, menu as m
-WHERE t.m_id = m.m_id
-ORDER BY t.tid DESC";
+$query = "SELECT t.tid, r.t_number, m.m_name, t.table_id, t.order_status
+FROM tableorder as t, tablerecord as r, menu as m
+WHERE t.m_id = m.m_id and t.table_id = r.table_id
+ORDER BY t.tid DESC
+LIMIT 25
+";
 
 $result = mysqli_query($GLOBALS['db'], $query);
 
 
 if (mysqli_num_rows($result) > 0) {
-    // output data of each row
+    // output data of each row. Need to fix order IDs on buttons so that thye change the right one
     while($row = mysqli_fetch_assoc($result)) {
-        $orderQueue->push(Order::create()->setTableID($row['table_id'])->setOrder($row['m_name'])->setStatus($row['order_status'])->setOrderID($row['tid']));
+        $orderQueue->push(Order::create()->setTableID($row['t_number'])->setOrder($row['m_name'])->setStatus($row['order_status'])->setOrderID($row['tid']));
     }
 }
 if(!$result){
     error_log(mysqli_error($GLOBALS['db']));
 }
+
 /*Ensure Queue stays manageable in size*/
 while($orderQueue->count() > 25){
 	$orderQueue->pop();

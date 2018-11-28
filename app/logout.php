@@ -1,7 +1,8 @@
 <?php
-   session_start();
+   include_once("create_session.php");
    
-   if(session_destroy()) {
-      header("Location: login.php");
-   }
+   session_destroy();
+   $_SESSION = array();
+      
+   header("Location: login.php");
 ?>
